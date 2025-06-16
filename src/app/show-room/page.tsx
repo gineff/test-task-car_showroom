@@ -5,23 +5,23 @@ import { FilterPanel } from '@/features/filter-panel';
 import { Pagination } from '@/features/pagination';
 import { Header } from '@/widgets/header';
 
-type ShowRoomPageProps = {
-  searchParams: { 
-    _limit?: string; 
-    _page?: string; 
-    _sort?: string; 
-    _order?: string 
-  };
-};
 
-export default async function ShowRoomPage({ searchParams }: ShowRoomPageProps) {
-  // No need to await searchParams - it's already resolved
+export default async function ShowRoomPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    _limit?: string;
+    _page?: string;
+    _sort?: string;
+    _order?: string;
+  }>;
+}) {
   const { 
     _limit = itemsPerPage.toString(), 
     _page = '1', 
     _sort = 'price', 
     _order = 'asc' 
-  } = searchParams;
+  } = await searchParams;
 
   const { data: cars, meta } = await fetchCarList({
     _limit: Number(_limit),
