@@ -5,10 +5,10 @@ import { useTransition } from 'react';
 import { selectOptions } from '../config';
 import { getCurrentOption } from '../lib';
 
-export const FilterPanel =  ({ _sort, _order }: { _sort: string; _order: string }) => {
+export const FilterPanel = ({ _sort, _order }: { _sort: string; _order: string }) => {
   const [, startTransition] = useTransition();
 
-  const currentOption = getCurrentOption( _sort, _order ) 
+  const currentOption = getCurrentOption(_sort, _order);
 
   const { editSearchParams } = useSearchAppParams();
 
@@ -22,7 +22,7 @@ export const FilterPanel =  ({ _sort, _order }: { _sort: string; _order: string 
   };
 
   return (
-    <div className='flex justify-between items-center'>
+    <div className='flex justify-between items-center px-2 lg:px-0'>
       <h2 className='text-2xl font-semibold'>Show-room</h2>
       <div className='flex gap-2'>
         <SelectField

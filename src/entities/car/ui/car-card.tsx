@@ -1,6 +1,6 @@
 import { Calendar, CarFront, Fuel, Gauge, Heart, Palette, Scale } from 'lucide-react';
-import Image from 'next/image';
 import { Car } from '../types';
+import { CarImageCarousel } from './car-image-carousel';
 
 interface CarCardProps {
   car: Car;
@@ -9,19 +9,14 @@ interface CarCardProps {
 export const CarCard = ({ car }: CarCardProps) => {
   return (
     <div className='flex flex-col rounded-xl bg-white shadow-md overflow-hidden w-full max-w-sm border border-gray-200'>
-      <div className='relative w-full h-48 bg-gray-100'>
-        <Image
-          src={car.images.image[0]}
-          alt={`${car.mark_cyrillic_name} ${car.model_cyrillic_name}`}
-          fill
-          className='object-contain p-4'
-          sizes='(max-width: 768px) 100vw, 33vw'
-        />
-      </div>
+      <CarImageCarousel
+        images={car.images.image}
+        alt={`${car.mark_cyrillic_name} ${car.model_cyrillic_name}`}
+      />
 
       <div className='p-4 flex flex-col flex-1 gap-2'>
         <div className='text-lg font-semibold'>
-          {car.mark_cyrillic_name} {car.model_cyrillic_name}
+          {car.mark_id} {car.folder_id}
         </div>
 
         <div className='text-xl font-bold text-black'>
